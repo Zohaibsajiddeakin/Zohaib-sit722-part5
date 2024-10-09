@@ -1,1 +1,25 @@
-# Your Solution
+version: '3.8'
+
+services:
+  book_catalog:
+    build:
+      context: ./book_catalog
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+  
+  inventory_management:
+    build:
+      context: ./inventory_management
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8000"
+  
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: library_db
+    ports:
+      - "5432:5432"
